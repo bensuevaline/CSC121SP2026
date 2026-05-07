@@ -1,0 +1,28 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+<div class="mb-4">
+    <h1 class="display-6">Art Topics</h1>
+    <p class="text-muted">
+        Choose a topic to view your creative notes and learning entries.
+    </p>
+</div>
+
+<div class="list-group mb-4">
+    {% for topic in topics %}
+        <a href="{% url 'learning_logs:topic' topic.id %}"
+           class="list-group-item list-group-item-action py-3">
+            <h5 class="mb-1">{{ topic }}</h5>
+            <small class="text-muted">View entries</small>
+        </a>
+    {% empty %}
+        <p class="text-muted">No topics have been added yet.</p>
+    {% endfor %}
+</div>
+
+<a class="btn btn-primary" href="{% url 'learning_logs:new_topic' %}">
+    Add a New Topic
+</a>
+
+{% endblock content %}
